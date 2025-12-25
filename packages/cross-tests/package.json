@@ -1,0 +1,8 @@
+{
+  "name": "@repo/cross-tests",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "test": "node ../../scripts/cross-project-contract-test.js"
+  }
+}
