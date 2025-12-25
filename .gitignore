@@ -1,9 +1,38 @@
-﻿node_modules
-.pnpm-store
-.next
-dist
+# Dependencies
+node_modules/
+.pnpm-store/
+.pnp/
+.pnp.js
+
+# Build outputs
+dist/
+build/
+.next/
+out/
+coverage/
+.nyc_output/
+*.tsbuildinfo
+
+# Caches
+.turbo/
+.cache/
+.eslintcache/
+
+# Logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Env
 .env
 .env.local
 .env.*.local
-coverage
+.env.*
+!.env.example
+
+# OS
 .DS_Store
+Thumbs.db
+Desktop.ini
