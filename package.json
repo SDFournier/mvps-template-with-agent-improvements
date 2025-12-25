@@ -1,5 +1,5 @@
 {
-  "name": "test-arqutiectura-cupones",
+  "name": "base-proyect-with-agent-guidelines",
   "private": true,
   "packageManager": "pnpm@9.12.0",
   "scripts": {
