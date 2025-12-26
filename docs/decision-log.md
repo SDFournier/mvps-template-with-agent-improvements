@@ -8,7 +8,89 @@ It is the source of truth for recurring decisions and trade-offs.
 - This log summarizes those ADRs and links to them.
 
 ## ADR index
-- (add entries here)
+- 001-hybrid-locking-idempotency.md (proposed)
+- 002-typeorm-migrations.md (proposed)
+- 003-explanatory-logging-levels.md (proposed)
+- 004-openapi-swagger.md (proposed)
+- 005-openapi-fetch-client.md (proposed)
+
+## Hybrid locking + idempotent redemption
+Decision:
+- Use Redis for short-lived code locks and MySQL transactions with
+  idempotency keys + unique constraints for durable redemption rules.
+- Assign codes via `rand_key` pivot queries with `SKIP LOCKED`.
+
+Why:
+- Redis lowers contention for in-flight redemptions.
+- MySQL enforces business rules and makes retries safe.
+- Pivot queries scale better than `ORDER BY RAND()`.
+
+Trade-offs:
+- Additional operational dependency on Redis.
+- More moving parts to instrument and monitor.
+
+When to revisit:
+- If Redis becomes unavailable frequently.
+- If assignment distribution proves skewed and requires a different strategy.
+
+## TypeORM migrations
+Decision:
+- Use TypeORM migrations as the schema source of truth.
+- Disable `synchronize` and run migrations on startup.
+
+Why:
+- Keeps schema changes explicit and reviewable.
+- Avoids silent schema drift between environments.
+
+Trade-offs:
+- Requires migration files for each schema change.
+- Adds a startup dependency on migration success.
+
+When to revisit:
+- If migration runtime becomes a bottleneck.
+- If a different ORM or migration tool is adopted.
+
+## Explanatory logging levels
+Decision:
+- Add LOG_DETAIL_LEVEL with three tiers for request flow visibility.
+
+Why:
+- Helps learning and debugging without changing code.
+- Keeps normal logs lightweight while allowing deep detail when needed.
+
+Trade-offs:
+- More logging instrumentation in services.
+- Risk of noisy logs if misused.
+
+When to revisit:
+- If structured tracing replaces narrative logs.
+
+## OpenAPI + Swagger UI
+Decision:
+- Publish OpenAPI via Swagger UI at `/docs` and JSON at `/docs-json`.
+- Use a centralized frontend API client aligned with the spec.
+
+Why:
+- Improves discoverability and helps generate client types.
+
+Trade-offs:
+- Adds DTO annotation work in controllers.
+
+When to revisit:
+- If API gateway or external contract tooling is introduced.
+
+## OpenAPI fetch client
+Decision:
+- Use `openapi-fetch` with `openapi-typescript` for typed frontend calls.
+
+Why:
+- Reduces client/server drift with low tooling overhead.
+
+Trade-offs:
+- Requires regenerating types when contracts change.
+
+When to revisit:
+- If a full SDK generator is adopted.
 
 ## Sessions vs JWT
 Decision:

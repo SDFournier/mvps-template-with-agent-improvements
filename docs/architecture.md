@@ -12,6 +12,7 @@
 - Caching is explicit with TTL and invalidation.
 - Uploads keep file content separate from metadata.
 - Logging captures requests without leaking sensitive data.
+- OpenAPI/Swagger documents API contracts.
 
 ## How to extend
 - Pick a feature playbook and follow its steps.

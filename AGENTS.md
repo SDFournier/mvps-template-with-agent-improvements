@@ -70,14 +70,15 @@ Create or update docs if any of the following happens:
 ## Setup and run (one-liners)
 - Infra (WSL/Linux): `./docker/infra-up.sh`
 - Infra (Windows): `docker\\infra-up.cmd`
-- Install: `corepack enable` then `pnpm install`
+- Install: `corepack enable` then `pnpm install` (Windows fallback: `pnpm.cmd install`)
 - Run: `pnpm dev`
 - Tests: `pnpm agent:finalize` (or `node scripts/agent-finalize.js`)
 
 ## Mandatory validation
 - Every change must align with the Good Practices document in this repo.
 - After each prompt, run `pnpm agent:finalize` and fix failing tests.
-- If pnpm is blocked by PowerShell policy, run `node scripts/agent-finalize.js`.
+- If pnpm is blocked by PowerShell policy, run `pnpm.cmd install` to ensure
+  deps are present and then run `node scripts/agent-finalize.js`.
 
 ## Architecture quick map
 - Web: screens and UI state, data access via hooks/helpers.
@@ -122,7 +123,7 @@ Create or update docs if any of the following happens:
 - Friction: docs/friction-log.md
 
 ## Env defaults (local)
-- MySQL: `localhost:3307` (db `coupons`)
+- MySQL: `localhost:3307` (db `coupons_mvp`)
 - Redis: `localhost:6378`
 - API base: `http://localhost:3001`
 - CORS: `CORS_ORIGIN=http://localhost:3000`
