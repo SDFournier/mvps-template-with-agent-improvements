@@ -166,9 +166,13 @@ Required components:
 Implementation steps:
 1) Log method, path, status, duration.
 2) Include request id if present.
+3) For domain flows, add step logs and explanations gated by LOG_DETAIL_LEVEL.
 
 Validation rules:
 - Do not log sensitive payloads or tokens.
+- Level 1: normal request logs.
+- Level 2: step logs in execution order.
+- Level 3: step + explanation logs (what/why) and optional memory snapshots.
 
 Required tests:
 - Unit: middleware registers finish handler and calls next.

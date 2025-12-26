@@ -24,6 +24,7 @@ No reemplaza los playbooks ni los contratos; los referencia.
 - SOLID como regla de diseno.
 - Configuracion por env con defaults razonables.
 - Observabilidad minima sin datos sensibles.
+- Observabilidad por niveles: LOG_DETAIL_LEVEL 1/2/3 para pasos y explicaciones.
 
 ## Frontend (Next)
 - UI solo presenta estado y dispara acciones.
@@ -38,6 +39,7 @@ No reemplaza los playbooks ni los contratos; los referencia.
 - Services con logica de negocio, sin orquestacion de HTTP.
 - Roles y permisos se validan siempre en backend.
 - Cache, uploads y colas siguen el playbook correspondiente.
+- Documentar APIs con OpenAPI (Swagger) y mantener DTOs anotados.
 
 ## Responsabilidades y SOLID (checks)
 - SRP: un unico motivo de cambio por componente.

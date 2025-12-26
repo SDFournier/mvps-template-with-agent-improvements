@@ -17,6 +17,7 @@
 2) Windows PowerShell: `corepack enable`
 3) Windows PowerShell: `pnpm install`
 4) Windows PowerShell: `pnpm dev`
+5) Opcional: `pnpm --filter @repo/api migrate` (o `pnpm.cmd --filter @repo/api migrate`)
 
 ## Infra sin Node/PNPM (Windows)
 Si queres levantar la infra desde PowerShell y Docker CLI esta disponible en Windows,
@@ -34,8 +35,18 @@ Tambien podes correr el comando directo:
 ## URLs
 - Web: http://localhost:3000
 - API: http://localhost:3001/health
+- Swagger UI: http://localhost:3001/docs
 
 La web muestra el JSON de `/health` en pantalla.
+
+## Logging levels
+- `LOG_DETAIL_LEVEL=1`: normal logs.
+- `LOG_DETAIL_LEVEL=2`: step logs for flow order.
+- `LOG_DETAIL_LEVEL=3`: step + explanation logs with memory snapshots.
+
+## OpenAPI client
+- Generate frontend types from OpenAPI:
+  - `pnpm --filter @repo/web api:types`
 
 ## Documentacion de features
 - `docs/00-overview.md`
@@ -59,6 +70,11 @@ La web muestra el JSON de `/health` en pantalla.
 - `docs/labs/README.md`
 - `docs/runbooks/README.md`
 - `prompts/README.md`
+
+## Learning helpers
+- Recap last stages (long form, with links and snippets):
+  - `node scripts/recap-stages.js 2`
+  - `pnpm recap:stages -- 2`
 
 ## Troubleshooting
 - Si MySQL/Redis dan `false` en `/health`, revisa que Docker este levantado (`pnpm dev:infra`).

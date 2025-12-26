@@ -18,7 +18,10 @@ feature should add or update tests that validate the intended behavior.
 
 ## How to run
 - Run the full suite with `pnpm agent:finalize`.
-- If PowerShell blocks pnpm scripts, run `node scripts/agent-finalize.js`.
+- If PowerShell blocks pnpm scripts, run `pnpm.cmd install` and then
+  `node scripts/agent-finalize.js`.
+- To include DB-backed integration tests, ensure MySQL is running and set
+  `RUN_DB_TESTS=1` before running the suite.
 
 ## Notes
 - E2E API tests run with an in-memory SQL engine and a mocked cache client.

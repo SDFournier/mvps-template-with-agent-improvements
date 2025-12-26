@@ -49,3 +49,6 @@ All new implementations must satisfy these requirements.
 ## Queues and async events
 - Contract: event shape validation
 - Unit: consumer handles invalid payloads
+
+## Integration (DB)
+- Optional: run DB-backed integration tests with `RUN_DB_TESTS=1`.

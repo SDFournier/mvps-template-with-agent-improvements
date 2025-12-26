@@ -119,16 +119,97 @@ Rules:
 - Uploads require authentication.
 - File download returns the original filename.
 
+## Coupon book contracts
+Create request:
+```
+{
+  "name": "Summer Deals",
+  "description": "VIP coupons",
+  "reusablePerUser": false,
+  "maxCodesPerUser": 1,
+  "maxRedemptionsPerUser": null
+}
+```
+
+Create response:
+```
+{
+  "couponBook": {
+    "id": "uuid",
+    "businessId": "biz-123",
+    "name": "Summer Deals",
+    "description": "VIP coupons",
+    "status": "ACTIVE",
+    "reusablePerUser": false,
+    "maxCodesPerUser": 1,
+    "maxRedemptionsPerUser": null,
+    "createdAt": "2025-01-01T00:00:00.000Z",
+    "updatedAt": "2025-01-01T00:00:00.000Z"
+  }
+}
+```
+
+Assignment request:
+```
+{ "userId": "user-123", "quantity": 1 }
+```
+
+Assignment response:
+```
+{
+  "assigned": [ { "codeId": "uuid", "code": "MT-ABC12345" } ],
+  "remainingAssignable": 0
+}
+```
+
+Lock request:
+```
+{ "userId": "user-123", "ttlSeconds": 120, "idempotencyKey": "uuid" }
+```
+
+Lock response:
+```
+{ "lockToken": "uuid", "lockExpiresAt": "2025-01-01T00:02:00.000Z" }
+```
+
+Redeem request:
+```
+{
+  "userId": "user-123",
+  "lockToken": "uuid",
+  "idempotencyKey": "uuid",
+  "orderRef": "order-789",
+  "metadata": { "channel": "web" }
+}
+```
+
+Redeem response:
+```
+{ "redemptionId": "uuid", "status": "SUCCEEDED" }
+```
+
+Rules:
+- `Idempotency-Key` header is required for lock and redeem requests.
+- `lockToken` must match the latest lock for the code.
+- Coupon book status values: ACTIVE | PAUSED | ARCHIVED.
+- Coupon code state values: AVAILABLE | ASSIGNED | LOCKED | DISABLED.
+
 ## Contract tests
 Every new or modified endpoint must have tests that assert:
 - The response shape matches the contract.
 - Errors follow the error contract.
+
+## OpenAPI
+Swagger UI is available at `/docs` when enabled, and the OpenAPI JSON is served
+at `/docs-json` for client generation.
 
 ## API access contract (frontend)
 Rules:
 - All HTTP calls go through a single client layer.
 - Auth token handling is centralized.
 - Errors are normalized to the error contract before UI handling.
+- Client uses OpenAPI types (openapi-fetch) and should be regenerated with
+  `pnpm --filter @repo/web api:types` when contracts change.
 
 ## Events contract (queues)
 Rules:
