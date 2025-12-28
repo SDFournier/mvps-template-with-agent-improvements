@@ -2,6 +2,10 @@
 
 Documento historico. No agregar reglas nuevas aca.
 Usar Good Practices, Playbooks, Contracts y Test Matrix como fuentes de verdad.
+Ver el indice en docs/00-overview.md para contexto historico.
+
+Historical note: this document is context only. Do not use it as a source
+of truth.
 
 ## Alcance implementado
 - Auth con sesiones persistidas y control de expiracion.
@@ -22,7 +26,8 @@ Usar Good Practices, Playbooks, Contracts y Test Matrix como fuentes de verdad.
 - No definir limites de paginacion.
 - Duplicar DTOs entre front y back.
 
-## Referencias canonicas
+## Canonical refs only
+Do not treat this document as rules. Use these sources of truth:
 - docs/good-practices.md
 - docs/feature-playbooks.md
 - docs/contracts.md

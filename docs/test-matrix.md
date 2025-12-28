@@ -3,6 +3,22 @@
 This matrix defines the required tests for each playbook.
 All new implementations must satisfy these requirements.
 
+## Purpose
+Declare minimum test coverage per playbook.
+
+## Use when
+- You need to know which tests are required for a feature.
+- You are verifying coverage before closing a change.
+
+## Canonical coverage rules
+This is the single source of truth for required coverage. Other docs should
+link here rather than restating rules.
+
+## Changing coverage rules
+- Update this document when coverage requirements change.
+- If a change affects architecture or contracts, add an ADR and update
+  docs/decision-log.md.
+
 ## Cross-cutting
 - Contract: error response shape for all endpoints.
 - Contract: web API client paths must map to API controllers.

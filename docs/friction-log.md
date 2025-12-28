@@ -37,3 +37,12 @@ aca antes de cerrar el cambio.
   Propuesta de mejora: documentar uso de pnpm.cmd o node scripts/agent-finalize,
   y aclarar prerequisitos de instalacion en Windows.
   Estado: resuelto (docs/testing.md, AGENTS.md)
+- Fecha: 2025-12-27
+  Contexto / prompt: seed y prueba manual de assignment/redemption
+  Descripcion de la friccion: docker y mysql client no disponibles en PATH,
+  impidiendo levantar infra y ejecutar seeds automaticamente.
+  Impacto potencial: bloqueo para validaciones manuales por etapa.
+  Documentos afectados: docs/testing.md, docs/flows/coupon-assignment-redemption.md
+  Propuesta de mejora: agregar prerequisitos de infra local y comandos de
+  verificacion de dependencias (docker/mysql).
+  Estado: pendiente

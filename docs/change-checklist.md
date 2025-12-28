@@ -3,12 +3,38 @@
 Use this checklist for every change proposal and implementation.
 This keeps responsibilities and contracts consistent across iterations.
 
+## Purpose
+Provide mandatory process gates for all changes.
+
+## Use when
+- You are starting any implementation or doc update.
+- You need to confirm required validation and documentation steps.
+
+## Definition of ready (decision time)
+- Playbook selected and scope named.
+- Contracts that will change or be confirmed listed.
+- Decision snapshot captured (see template).
+- Required tests mapped to the Test Matrix.
+- Manual validation path and expected log signals identified.
+
 ## Pre-change
 - Review Contracts, Feature Playbooks, Test Matrix, and Decision Log.
 - Identify which playbook applies.
 - Confirm required tests for the playbook.
 - Note any contracts that will change.
 - Identify new infra dependencies (db, cache, queue) and required env vars.
+- Capture a decision snapshot using the template below and store it in the
+  prompt artifact or a flow/runbook doc.
+
+## Decision snapshot template
+Record the following before coding:
+- Goal/behavior:
+- Entry points (endpoints, scripts, UI paths):
+- Inputs/outputs:
+- Invariants/limits (size, TTL, page size, roles):
+- Error cases and status codes:
+- Required tests (Test Matrix items):
+- Manual validation steps and expected logs:
 
 ## Implementation
 - Maintain clear separation of responsibilities:

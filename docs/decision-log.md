@@ -3,6 +3,13 @@
 This document explains why key architectural choices were made.
 It is the source of truth for recurring decisions and trade-offs.
 
+## Purpose
+Summarize architectural decisions and link to ADRs.
+
+## Use when
+- You need a quick rationale for an architectural choice.
+- You are deciding whether to create a new ADR.
+
 ## ADR workflow
 - New architectural decisions should be captured as ADRs.
 - This log summarizes those ADRs and links to them.
@@ -13,6 +20,8 @@ It is the source of truth for recurring decisions and trade-offs.
 - 003-explanatory-logging-levels.md (proposed)
 - 004-openapi-swagger.md (proposed)
 - 005-openapi-fetch-client.md (proposed)
+- 006-class-validator-validation-pipe.md (accepted)
+- 007-layered-data-access.md (accepted)
 
 ## Hybrid locking + idempotent redemption
 Decision:
@@ -91,6 +100,39 @@ Trade-offs:
 
 When to revisit:
 - If a full SDK generator is adopted.
+
+## Class-validator + ValidationPipe
+Decision:
+- Use `class-validator` on DTOs and a global NestJS `ValidationPipe` with
+  whitelist + forbid rules.
+- Map validation errors into the existing error contract shape.
+
+Why:
+- Centralizes runtime validation and reduces controller boilerplate.
+- Keeps Swagger DTOs aligned with actual enforcement.
+
+Trade-offs:
+- Adds dependencies and DTO annotation overhead.
+- Global validation can reject unexpected fields that were previously ignored.
+
+When to revisit:
+- If a different validation library becomes the standard across services.
+
+## Layered data access
+Decision:
+- Introduce repositories/adapters for DB/Redis specifics.
+- Keep services focused on business rules and orchestration.
+
+Why:
+- Reduces coupling between business logic and storage details.
+- Improves testability of persistence and service rules.
+
+Trade-offs:
+- More files and wiring per domain module.
+- Slightly more ceremony for MVP endpoints.
+
+When to revisit:
+- If the repo remains small and layers feel unnecessary.
 
 ## Sessions vs JWT
 Decision:
