@@ -34,5 +34,5 @@ Adopt a hybrid approach:
 
 ## Links
 - Decision log entry: docs/decision-log.md
-- Concept card: docs/learning/001-idempotent-redemption-locking.md
+- Concept card: docs/learning/domain/coupon-patterns.md
 - Flow: docs/flows/coupon-assignment-redemption.md

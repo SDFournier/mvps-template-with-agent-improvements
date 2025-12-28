@@ -4,10 +4,25 @@ These playbooks define repeatable, strict patterns for common features.
 They describe what to build, how to validate it, and which tests are required.
 They do not reference specific files so they remain stable even if code moves.
 
+## Purpose
+Provide step-by-step recipes and validation rules for common feature types.
+
+## Use when
+- You are implementing a feature covered by a playbook.
+- You need to know required tests and validations for that feature.
+
 ## Global rules
 - Follow Contracts, Good Practices, and the Change Checklist.
 - Use the iteration loop described in the Overview.
 - Required tests are defined in the Test Matrix.
+
+## Decision-time artifacts (before coding)
+- Name the playbook and the feature scope (entity or flow).
+- List endpoints and DTOs that will change or be added.
+- Record invariants or limits (page size, TTL, size limits, roles).
+- List error cases and expected status codes.
+- Define the manual validation path and expected log signals.
+- Map required tests from the Test Matrix.
 
 ## Playbook: Auth (sessions)
 Purpose:
@@ -19,6 +34,11 @@ Required components:
 - Auth service (register, login, validate, logout).
 - Auth controller endpoints: register, login, me, logout.
 - Auth guard that reads Authorization header and resolves user context.
+
+Decision checkpoints:
+- Define password policy (min length) and session TTL.
+- Define default role and any promotion rules.
+- Define the manual validation entrypoint and expected logs.
 
 Implementation steps:
 1) Validate email format and minimum password length.
@@ -49,6 +69,11 @@ Required components:
 - Service (list, get by id, create, update, delete).
 - Controller with endpoints for list and CRUD.
 
+Decision checkpoints:
+- Choose max pageSize and default sort order.
+- List required fields and validation constraints.
+- Define the manual validation entrypoint and expected logs.
+
 Implementation steps:
 1) Accept page and pageSize in list endpoints.
 2) Enforce max pageSize in the controller.
@@ -74,6 +99,11 @@ Required components:
 - Table component for rendering rows.
 - Pagination component for page controls.
 
+Decision checkpoints:
+- Define empty, loading, and error states.
+- Confirm page size source (API-driven or UI default).
+- Define the manual validation entrypoint and expected logs.
+
 Implementation steps:
 1) Keep data fetching outside the UI component.
 2) Render loading and error states explicitly.
@@ -95,6 +125,11 @@ Required components:
 - Upload model with metadata (original name, stored name, size, mime type).
 - Uploads service (create, find, read file).
 - Uploads controller endpoints: create, metadata read, file download.
+
+Decision checkpoints:
+- Choose max file size and allowed mime types.
+- Define storage path strategy and download auth policy.
+- Define the manual validation entrypoint and expected logs.
 
 Implementation steps:
 1) Validate filename and base64 content.
@@ -120,6 +155,11 @@ Required components:
 - Cache service with get/set and TTL.
 - Clear-by-prefix or invalidation strategy.
 
+Decision checkpoints:
+- Choose TTL values and invalidation triggers.
+- Define cache key structure and list parameters.
+- Define the manual validation entrypoint and expected logs.
+
 Implementation steps:
 1) Build cache keys from list parameters.
 2) Return cached data if available.
@@ -142,6 +182,11 @@ Required components:
 - Roles decorator and roles guard.
 - Admin or privileged endpoint for validation.
 
+Decision checkpoints:
+- Define role list and which endpoints require them.
+- Decide if role promotion is manual or config-driven.
+- Define the manual validation entrypoint and expected logs.
+
 Implementation steps:
 1) Assign default role on registration.
 2) Optionally elevate role based on configuration.
@@ -162,6 +207,11 @@ Purpose:
 
 Required components:
 - Request logging middleware.
+
+Decision checkpoints:
+- Define LOG_DETAIL_LEVEL defaults for dev and prod.
+- List which flows need step/explain logs.
+- Define the manual validation entrypoint and expected logs.
 
 Implementation steps:
 1) Log method, path, status, duration.
@@ -184,6 +234,11 @@ Purpose:
 Required components:
 - Producer that emits events with a documented schema.
 - Consumer that validates and handles the event.
+
+Decision checkpoints:
+- Define event schema versioning and retry/backoff policy.
+- Decide failure handling (dead-letter, alerting, or retries).
+- Define the manual validation entrypoint and expected logs.
 
 Implementation steps:
 1) Define an event schema and required fields in the Contracts document.

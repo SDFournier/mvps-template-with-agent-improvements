@@ -3,6 +3,10 @@
 ## Purpose
 Keep development, testing, and production aligned to prevent drift.
 
+## Use when
+- You need to add or document env vars.
+- You are validating infra parity across environments.
+
 ## Required services
 - Database: source of truth for persistent data.
 - Cache: optional accelerator; app must work without it.

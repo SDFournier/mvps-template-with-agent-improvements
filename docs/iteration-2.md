@@ -2,6 +2,10 @@
 
 Documento historico. No agregar reglas nuevas aca.
 Usar Good Practices, Playbooks, Contracts y Test Matrix como fuentes de verdad.
+Ver el indice en docs/00-overview.md para contexto historico.
+
+Historical note: this document is context only. Do not use it as a source
+of truth.
 
 ## Alcance implementado
 - Tabla con paginacion para listados.
@@ -25,7 +29,8 @@ Usar Good Practices, Playbooks, Contracts y Test Matrix como fuentes de verdad.
 - Logging excesivo con datos sensibles.
 - Roles validados solo en el front.
 
-## Referencias canonicas
+## Canonical refs only
+Do not treat this document as rules. Use these sources of truth:
 - docs/good-practices.md
 - docs/feature-playbooks.md
 - docs/contracts.md

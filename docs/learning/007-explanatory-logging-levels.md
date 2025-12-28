@@ -15,6 +15,8 @@ Three log detail levels to explain what the system is doing and why.
 - LOG_DETAIL_LEVEL=1: request logs only.
 - LOG_DETAIL_LEVEL=2: step logs in order.
 - LOG_DETAIL_LEVEL=3: step + explanation + memory snapshots.
+- Redis lock details (key, TTL, unlock strategy) show at Level 2/3
+  during coupon redemption.
 
 ## Observability
 - Use Level 2 to trace flow order.

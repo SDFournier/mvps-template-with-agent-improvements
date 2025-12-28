@@ -4,6 +4,16 @@
 Testing enforces the documented decisions and prevents regressions. Each new
 feature should add or update tests that validate the intended behavior.
 
+## Use when
+- You need how to run tests or apply the Test Matrix.
+- You are deciding which test types to add.
+
+## Canonical rule ownership
+Do not define rules here. Required coverage and process gates live in:
+- docs/test-matrix.md
+- docs/change-checklist.md
+This doc is for how to run tests and apply those rules.
+
 ## Test types and when to use them
 - Unit tests: validate services, guards, and pure helpers.
 - Smoke tests: compile modules to catch wiring errors at runtime.
@@ -11,10 +21,17 @@ feature should add or update tests that validate the intended behavior.
 - Contract checks: assert response shapes and shared DTO expectations.
 - Cross-project contract: web API client paths must match API controllers.
 
-## Validation rules
-- Follow the Test Matrix for required coverage per playbook.
-- Use the Change Checklist for process gates.
+## Apply the matrix
+- Use docs/test-matrix.md for required coverage per playbook.
+- Use docs/change-checklist.md for process gates.
 - Use AGENTS for mandatory execution rules.
+
+## Stage manual validation
+- Each stage must include a concrete manual test path for the programmer.
+- Document steps in the relevant flow doc or runbook with inputs, outputs,
+  and expected log signals.
+- Use LOG_DETAIL_LEVEL 2 or 3 to inspect step logs and explanations.
+- Manual validation complements automated tests; it does not replace them.
 
 ## How to run
 - Run the full suite with `pnpm agent:finalize`.

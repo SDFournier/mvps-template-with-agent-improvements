@@ -3,6 +3,13 @@
 ADRs capture the context and rationale behind architectural decisions.
 One decision per ADR.
 
+## Purpose
+Provide the canonical rationale and trade-offs for architecture decisions.
+
+## Use when
+- You are making or revisiting an architectural decision.
+- You need the full context behind a decision in the log.
+
 ## Relationship to the decision log
 - ADRs are the detailed source of truth for each decision.
 - The decision log summarizes key decisions and links to ADRs.

@@ -3,6 +3,13 @@
 These contracts define API shapes that must remain stable.
 Any change requires updating this document and the tests.
 
+## Purpose
+Define canonical request/response shapes and error formats.
+
+## Use when
+- You are adding or changing API inputs/outputs.
+- You need to verify error or pagination response formats.
+
 ## Error contract
 All failed requests must return the same shape.
 
